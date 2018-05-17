@@ -8,11 +8,11 @@ from time import sleep
 class Prototype:
     def __init__(self):
         # Hardware PWM available on GPIO12, GPIO13, GPIO18, GPIO19
-        self.enableA = 0 # Phisycal pin 12
+        self.enableA = 0  # Phisycal pin 12
         self.input1 = 0
         self.input2 = 0
 
-        self.enableB = 0 # Phisycal pin 35
+        self.enableB = 0  # Phisycal pin 35
         self.input3 = 0
         self.input4 = 0
 

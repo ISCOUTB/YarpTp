@@ -9,6 +9,9 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 app.one_request = True
 app.proto = None
 
+@app.errorhandler(404)
+def page_not_found():
+    return jsonify(code_error=404, message='This action doesn\'t exist. Please, go to the documentation for help')
 
 @app.before_request
 def before_request():
@@ -41,64 +44,67 @@ def login():
             return jsonify(message='Ya existe un usuario loggeado')
 
 
-@app.route('/api/v1/random/<int:valor>')
-def la_random(valor=0):
-    if 'token' in session:
-        return jsonify(val=valor)
-    else:
-        return jsonify(message='You\'re unauthorized to perform this action. Please, Log in in the URL',
-                url=url_for('login'))
-
-
-@app.route('/api/v1/move/w_left/<direction>')
-@app.route('/api/v1/move/w_left/<direction>/<int:speed>')
+@app.route('/api/v1/move/w_left/<string:direction>')
+@app.route('/api/v1/move/w_left/<string:direction>/<int:speed>')
 def move_wLeft(direction='', speed=None):
     if direction == 'forward':
         if speed is None:
             app.proto.ForwardMotorA()
+            return jsonify(message='Moving left motor - ' + direction)
         else:
             app.proto.ForwardMotorAwSpeed(speed)
+            return jsonify(message='Moving left motor  - ' + direction + ' with speed ' + str(speed))
     elif direction == 'reverse':
         if speed is None:
             app.proto.ReverseMotorA()
+            return jsonify(message='Moving left motor - ' + direction)
         else:
             app.proto.ReverseMotorAwSpeed(speed)
+            return jsonify(message='Moving left motor  - ' + direction + ' with speed ' + str(speed))
     else:
-        pass   # error
+        return jsonify(message='This action doesn\'t exist. Please, go to the documentation for help')
 
 
-@app.route('/api/v1/move/w_right/<direction>')
-@app.route('/api/v1/move/w_right/<direction>/<int:speed>')
+@app.route('/api/v1/move/w_right/<string:direction>')
+@app.route('/api/v1/move/w_right/<string:direction>/<int:speed>')
 def move_wRight(direction='', speed=None):
     if direction == 'forward':
         if speed is None:
             app.proto.ForwardMotorB()
+            return jsonify(message='Moving right motor  - ' + direction)
         else:
             app.proto.ForwardMotorBwSpeed(speed)
+            return jsonify(message='Moving right motor  - ' + direction + ' with speed ' + str(speed))
     elif direction == 'reverse':
         if speed is None:
             app.proto.ReverseMotorB()
+            return jsonify(message='Moving right motor  - ' + direction)
         else:
             app.proto.ReverseMotorBwSpeed(speed)
+            return jsonify(message='Moving right motor  - ' + direction + ' with speed ' + str(speed))
     else:
-        pass  # error
+        return jsonify(message='This action doesn\'t exist. Please, go to the documentation for help')
 
 
-@app.route('/api/v1/move/both/<direction>')
-@app.route('/api/v1/move/both/<direction>/<int:speed>')
+@app.route('/api/v1/move/both/<string:direction>')
+@app.route('/api/v1/move/both/<string:direction>/<int:speed>')
 def move_wLeft(direction='', speed=None):
     if direction == 'forward':
         if speed is None:
             app.proto.ForwardBoth()
+            return jsonify(message='Moving both motors  - ' + direction)
         else:
             app.proto.ForwardBothwSpeed(speed)
+            return jsonify(message='Moving both motors  - ' + direction + ' with speed ' + str(speed))
     elif direction == 'reverse':
         if speed is None:
             app.proto.ReverseBoth()
+            return jsonify(message='Moving both motors  - ' + direction)
         else:
             app.proto.ReverseBothwSpeed(speed)
+            return jsonify(message='Moving both motors  - ' + direction + ' with speed ' + str(speed))
     else:
-        pass  # error
+        return jsonify(message='This action doesn\'t exist. Please, go to the documentation for help')
 
 
 @app.route('/api/v1/stop')
@@ -106,12 +112,16 @@ def move_wLeft(direction='', speed=None):
 def stop(motor=None):
     if motor is None:
         app.proto.StopAll()
+        return jsonify(message='Stopping both motors')
     elif motor == 'w_left':
         app.proto.StopMotorA()
+        return jsonify(message='Stopping left motor')
     elif motor == 'w_right':
         app.proto.StopMotorB()
+        return jsonify(message='Stopping right motor')
     else:
-        pass  # error
+        return jsonify(message='This action doesn\'t exist. Please, go to the documentation for help')
+
 
 @app.route('/api/v1/logout')
 def logout():
