@@ -1,4 +1,4 @@
-from flask import Flask, session, redirect, url_for, escape, request, jsonify
+from flask import Flask, session, url_for, request, jsonify
 import hashlib
 from random import randrange
 
@@ -56,4 +56,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
