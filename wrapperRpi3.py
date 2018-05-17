@@ -4,6 +4,7 @@ aaaa
 import RPi.GPIO as GPIO
 from time import sleep
 
+
 class Prototype:
     def __init__(self):
         # Hardware PWM available on GPIO12, GPIO13, GPIO18, GPIO19
