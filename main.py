@@ -130,6 +130,7 @@ def logout():
     if 'token' in session:
         # remove the username from the session if it's there
         app.one_request = True
+        app.proto = None
         session.pop('token', None)
         return jsonify(code=200, message='You\'ve logged out')
     else:
