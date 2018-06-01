@@ -195,3 +195,6 @@ class Prototype:
 
     def StopMotorB(self):
         self.power_off((self.input3, self.input4))
+
+    def GoodBye(self):
+        GPIO.cleanup()
