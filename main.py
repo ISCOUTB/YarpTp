@@ -51,14 +51,25 @@ def login():
 @app.route('/api/v1/move/<string:motor>/<string:direction>/<int:speed>')
 @app.route('/api/v1/move/<string:motor>/<string:direction>/<int:speed>/<float:time>')
 def movement(motor, direction, speed, time):
-    if motor == 'left':
+    if motor == 'left' and direction == 'forward':
         pass
-    elif motor == 'right':
+    elif motor == 'left' and direction == 'reverse':
         pass
-    elif motor == 'both':
+    elif motor == 'right' and direction == 'forward':
+        pass
+    elif motor == 'right' and direction == 'reverse':
+        pass
+    elif motor == 'both' and direction == 'forward':
+        pass
+    elif motor == 'both' and direction == 'reverse':
         pass
     else:
-        pass  # Error
+        if motor not in ['left', 'right', 'both'] and direction in ['forward', 'reverse']:
+            pass
+        elif motor in ['left', 'right', 'both'] and direction not in ['forward', 'reverse']:
+            pass
+        else:
+            pass
 
 
 @app.route('/api/v1/move/w_left/<string:direction>')
