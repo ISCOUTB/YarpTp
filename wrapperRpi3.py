@@ -37,6 +37,9 @@ class Prototype:
         else:
             self.pwm_b.ChangeDutyCycle(sp)
 
+    def power_off(self, lst):
+        GPIO.output(lst, False)
+
     def ForwardMotorA(self, tm=0):
         # self.signals((self.input1,self.input2), (GPIO.LOW, GPIO.HIGH), True, 50)
         if tm == 0:
@@ -48,7 +51,7 @@ class Prototype:
             GPIO.output(self.input2, GPIO.HIGH)
             self.pwm_a.ChangeDutyCycle(50)
             sleep(tm)
-            GPIO.cleanup((self.input1, self.input2))
+            self.power_off((self.input1, self.input2))
 
 
     def ForwardMotorB(self, tm=0):
@@ -62,7 +65,7 @@ class Prototype:
             GPIO.output(self.input4, GPIO.LOW)
             self.pwm_b.ChangeDutyCycle(50)
             sleep(tm)
-            GPIO.cleanup((self.input3, self.input4))
+            self.power_off((self.input3, self.input4))
 
     def ReverseMotorA(self, tm=0):
         # self.signals((self.input1,self.input2), (GPIO.HIGH, GPIO.LOW), True, 50)
@@ -75,7 +78,7 @@ class Prototype:
             GPIO.output(self.input2, GPIO.LOW)
             self.pwm_a.ChangeDutyCycle(50)
             sleep(tm)
-            GPIO.cleanup((self.input1, self.input2))
+            self.power_off((self.input1, self.input2))
 
 
     def ReverseMotorB(self, tm=0):
@@ -89,7 +92,7 @@ class Prototype:
             GPIO.output(self.input4, GPIO.HIGH)
             self.pwm_b.ChangeDutyCycle(50)
             sleep(tm)
-            GPIO.cleanup((self.input3, self.input4))
+            self.power_off((self.input3, self.input4))
 
     def ForwardBoth(self, tm=0):
         if tm == 0:
@@ -99,7 +102,7 @@ class Prototype:
             self.ForwardMotorA()
             self.ForwardMotorB()
             sleep(tm)
-            GPIO.cleanup()
+            self.power_off((self.input1, self.input2, self.input3, self.input4))
 
     def ReverseBoth(self, tm=0):
         if tm == 0:
@@ -109,7 +112,7 @@ class Prototype:
             self.ReverseMotorA()
             self.ReverseMotorB()
             sleep(tm)
-            GPIO.cleanup()
+            self.power_off((self.input1, self.input2, self.input3, self.input4))
 
     # Move motor A - Forward - with Speed = speed
     def ForwardMotorAwSpeed(self, speed, tm=0):
@@ -123,7 +126,7 @@ class Prototype:
             GPIO.output(self.input2, GPIO.HIGH)
             self.pwm_a.ChangeDutyCycle(speed)
             sleep(tm)
-            GPIO.cleanup((self.input1, self.input2))
+            self.power_off((self.input1, self.input2))
 
     def ForwardMotorBwSpeed(self, speed, tm=0):
         # self.signals((self.input3,self.input4), (GPIO.HIGH, GPIO.LOW), False, speed)
@@ -136,7 +139,7 @@ class Prototype:
             GPIO.output(self.input4, GPIO.LOW)
             self.pwm_b.ChangeDutyCycle(speed)
             sleep(tm)
-            GPIO.cleanup((self.input3, self.input4))
+            self.power_off((self.input3, self.input4))
 
     def ReverseMotorAwSpeed(self, speed, tm=0):
         # self.signals((self.input1,self.input2), (GPIO.HIGH, GPIO.LOW), True, speed)
@@ -149,7 +152,7 @@ class Prototype:
             GPIO.output(self.input2, GPIO.LOW)
             self.pwm_a.ChangeDutyCycle(speed)
             sleep(tm)
-            GPIO.cleanup((self.input1, self.input2))
+            self.power_off((self.input1, self.input2))
 
     def ReverseMotorBwSpeed(self, speed, tm=0):
         # self.signals((self.input3,self.input4), (GPIO.LOW, GPIO.HIGH), False, speed)
@@ -162,7 +165,7 @@ class Prototype:
             GPIO.output(self.input4, GPIO.HIGH)
             self.pwm_b.ChangeDutyCycle(speed)
             sleep(tm)
-            GPIO.cleanup((self.input3, self.input4))
+            self.power_off((self.input4, self.input4))
 
     def ForwardBothwSpeed(self, speed, tm=0):
         if tm == 0:
@@ -172,7 +175,7 @@ class Prototype:
             self.ForwardMotorAwSpeed(speed)
             self.ForwardMotorBwSpeed(speed)
             sleep(tm)
-            GPIO.cleanup()
+            self.power_off((self.input1, self.input2, self.input3, self.input4))
 
     def ReverseBothwSpeed(self, speed, tm=0):
         if tm == 0:
@@ -182,13 +185,13 @@ class Prototype:
             self.ReverseMotorAwSpeed(speed)
             self.ReverseMotorBwSpeed(speed)
             sleep(tm)
-            GPIO.cleanup()
+            self.power_off((self.input1, self.input2, self.input3, self.input4))
 
     def StopAll(self):
-        GPIO.cleanup()
+        self.power_off((self.input1, self.input2, self.input3, self.input4))
 
     def StopMotorA(self):
-        GPIO.cleanup((self.input1, self.input2))
+        self.power_off((self.input1, self.input2))
 
     def StopMotorB(self):
-        GPIO.cleanup((self.input3, self.input4))
+        self.power_off((self.input3, self.input4))
