@@ -6,14 +6,14 @@ class Prototype:
     def __init__(self):
         # Hardware PWM available on GPIO12, GPIO13, GPIO18, GPIO19
         self.enableA = 0  # Phisycal pin 12
-        self.input1 = 0
-        self.input2 = 0
+        self.input1 = 17
+        self.input2 = 22
 
         self.enableB = 0  # Phisycal pin 35
-        self.input3 = 0
-        self.input4 = 0
+        self.input3 = 23
+        self.input4 = 24
 
-        GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BCM)
 
         channel_list = (self.enableA, self.input1, self.input2,
                         self.enableB, self.input3, self.input4)
