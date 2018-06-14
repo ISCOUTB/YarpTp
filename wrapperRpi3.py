@@ -1,15 +1,15 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-
+# guardado
 class Prototype:
     def __init__(self):
         # Hardware PWM available on GPIO12, GPIO13, GPIO18, GPIO19
-        self.enableA = 0  # Phisycal pin 12
+        self.enableA = 18  # Phisycal pin 12
         self.input1 = 17
         self.input2 = 22
 
-        self.enableB = 0  # Phisycal pin 35
+        self.enableB = 19  # Phisycal pin 35
         self.input3 = 23
         self.input4 = 24
 
@@ -20,7 +20,7 @@ class Prototype:
 
         GPIO.setup(channel_list, GPIO.OUT)
 
-        frequency = 0
+        frequency = 500
 
         self.pwm_a = GPIO.PWM(self.enableA, frequency)
         self.pwm_b = GPIO.PWM(self.enableB, frequency)
@@ -53,16 +53,15 @@ class Prototype:
             sleep(tm)
             self.power_off((self.input1, self.input2))
 
-
     def ForwardMotorB(self, tm=0):
         # self.signals((self.input3,self.input4), (GPIO.HIGH, GPIO.LOW), False, 50)
         if tm == 0:
-            GPIO.output(self.input3, GPIO.HIGH)
-            GPIO.output(self.input4, GPIO.LOW)
+            GPIO.output(self.input3, GPIO.LOW)
+            GPIO.output(self.input4, GPIO.HIGH)
             self.pwm_b.ChangeDutyCycle(50)
         else:
-            GPIO.output(self.input3, GPIO.HIGH)
-            GPIO.output(self.input4, GPIO.LOW)
+            GPIO.output(self.input3, GPIO.LOW)
+            GPIO.output(self.input4, GPIO.HIGH)
             self.pwm_b.ChangeDutyCycle(50)
             sleep(tm)
             self.power_off((self.input3, self.input4))
@@ -80,16 +79,15 @@ class Prototype:
             sleep(tm)
             self.power_off((self.input1, self.input2))
 
-
     def ReverseMotorB(self, tm=0):
         # self.signals((self.input3,self.input4), (GPIO.LOW, GPIO.HIGH), False, 50)
         if tm == 0:
-            GPIO.output(self.input3, GPIO.LOW)
-            GPIO.output(self.input4, GPIO.HIGH)
+            GPIO.output(self.input3, GPIO.HIGH)
+            GPIO.output(self.input4, GPIO.LOW)
             self.pwm_b.ChangeDutyCycle(50)
         else:
-            GPIO.output(self.input3, GPIO.LOW)
-            GPIO.output(self.input4, GPIO.HIGH)
+            GPIO.output(self.input3, GPIO.HIGH)
+            GPIO.output(self.input4, GPIO.LOW)
             self.pwm_b.ChangeDutyCycle(50)
             sleep(tm)
             self.power_off((self.input3, self.input4))
@@ -131,12 +129,12 @@ class Prototype:
     def ForwardMotorBwSpeed(self, speed, tm=0):
         # self.signals((self.input3,self.input4), (GPIO.HIGH, GPIO.LOW), False, speed)
         if tm == 0:
-            GPIO.output(self.input3, GPIO.HIGH)
-            GPIO.output(self.input4, GPIO.LOW)
+            GPIO.output(self.input3, GPIO.LOW)
+            GPIO.output(self.input4, GPIO.HIGH)
             self.pwm_b.ChangeDutyCycle(speed)
         else:
-            GPIO.output(self.input3, GPIO.HIGH)
-            GPIO.output(self.input4, GPIO.LOW)
+            GPIO.output(self.input3, GPIO.LOW)
+            GPIO.output(self.input4, GPIO.HIGH)
             self.pwm_b.ChangeDutyCycle(speed)
             sleep(tm)
             self.power_off((self.input3, self.input4))
@@ -157,12 +155,12 @@ class Prototype:
     def ReverseMotorBwSpeed(self, speed, tm=0):
         # self.signals((self.input3,self.input4), (GPIO.LOW, GPIO.HIGH), False, speed)
         if tm == 0:
-            GPIO.output(self.input3, GPIO.LOW)
-            GPIO.output(self.input4, GPIO.HIGH)
+            GPIO.output(self.input3, GPIO.HIGH)
+            GPIO.output(self.input4, GPIO.LOW)
             self.pwm_b.ChangeDutyCycle(speed)
         else:
-            GPIO.output(self.input3, GPIO.LOW)
-            GPIO.output(self.input4, GPIO.HIGH)
+            GPIO.output(self.input3, GPIO.HIGH)
+            GPIO.output(self.input4, GPIO.LOW)
             self.pwm_b.ChangeDutyCycle(speed)
             sleep(tm)
             self.power_off((self.input4, self.input4))
