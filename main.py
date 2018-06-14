@@ -1,7 +1,7 @@
 from flask import Flask, session, url_for, request, jsonify
 import hashlib
 from random import randrange
-from wrapperRpi3 import Prototype
+from wrpi3 import Prototype
 
 app = Flask(__name__)
 
