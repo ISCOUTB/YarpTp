@@ -1,7 +1,8 @@
 from flask import Flask, session, url_for, request, jsonify, redirect
 import hashlib
 from random import randrange
-from wrpi3 import Prototype
+from wYarpTp import Prototype
+import math
 
 app = Flask(__name__)
 
