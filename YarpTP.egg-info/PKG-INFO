@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: YarpTP
+Version: 0.0.1
+Summary: YarpTp module for Raspberry Pi
+Home-page: https://github.com/IngenieriaDeSistemasUTB/YarpTp
+Author: Universidad Tecnológica de Bolívar
+Author-email: dirsis@utb.edu.co
+License: UNKNOWN
+Description: ### YarpTp ###
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Development Status :: 3 - Alpha
+Description-Content-Type: text/markdown

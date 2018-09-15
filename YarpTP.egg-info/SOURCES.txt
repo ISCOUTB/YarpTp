@@ -1,0 +1,8 @@
+README.md
+setup.py
+YarpTP.egg-info/PKG-INFO
+YarpTP.egg-info/SOURCES.txt
+YarpTP.egg-info/dependency_links.txt
+YarpTP.egg-info/top_level.txt
+YarpTp/YarpTp.py
+YarpTp/__init__.py
