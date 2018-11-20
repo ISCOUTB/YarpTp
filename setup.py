@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="YarpTp",
-    version="0.0.2",
+    version="0.0.3",
     author="Universidad Tecnológica de Bolívar",
     author_email="dirsis@utb.edu.co",
     description="YarpTp module for Raspberry Pi",
