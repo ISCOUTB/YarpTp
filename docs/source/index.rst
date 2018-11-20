@@ -17,10 +17,3 @@ En este espacio se encontrará toda la información para usar el módulo y de ig
    instalacion
    movimientos
    m_configuracion
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
