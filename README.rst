@@ -17,3 +17,7 @@ Instalación
 El paquete puede descargarse desde PyPi o usando el gestor de paquetes pip a través del comando:
 
   ``$ pip install YarpTp``
+
+Documentación
+-------------
+Para mayor información, puede visitar la documentación alojada `aquí <https://documentacion-del-modulo-yarptp.readthedocs.io>`_
